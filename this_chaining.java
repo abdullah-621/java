@@ -23,7 +23,7 @@ public class this_chaining
 {
   public static void main(String[] args) {
     {
-      man m = new man("Masum", 0);
+      man m = new man();
       m.displayInfo();
     }
   }

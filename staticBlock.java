@@ -1,13 +1,15 @@
 class made
 {
-  static {
-    System.out.println("Static block excute");
+  static class inner {
+    void p()
+    {
+      System.out.println("Inner static class");
+    }
   }
 }
 
 public class staticBlock {
   public static void main(String[] args) {
-    made m = new made();
-    made m2 = new made();
+    System.out.println(made());
   }
 }
