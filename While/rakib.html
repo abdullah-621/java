@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USA Macroeconomic Performance</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f0f1e;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .presentation {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      padding: 50px 70px;
+      background: linear-gradient(135deg, #0f0f1e 0%, #1a1a3e 100%);
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 58px;
+      margin-bottom: 25px;
+      color: #00d4ff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      font-size: 46px;
+      margin-bottom: 35px;
+      color: #00d4ff;
+      border-bottom: 4px solid #00d4ff;
+      padding-bottom: 15px;
+    }
+
+    h3 {
+      font-size: 34px;
+      margin-bottom: 20px;
+      color: #6dd5ed;
+    }
+
+    p {
+      font-size: 26px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .subtitle {
+      font-size: 28px;
+      color: #6dd5ed;
+      margin-bottom: 30px;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 25px;
+    }
+
+    li {
+      font-size: 26px;
+      margin: 20px 0;
+      padding-left: 45px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    li:before {
+      content: "●";
+      position: absolute;
+      left: 0;
+      color: #00d4ff;
+      font-weight: bold;
+      font-size: 28px;
+    }
+
+    .title-slide {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      text-align: center;
+    }
+
+    .title-slide h1 {
+      font-size: 68px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .course-info {
+      font-size: 24px;
+      color: #e0e0e0;
+      margin: 15px 0;
+    }
+
+    .instructor-box {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 25px;
+      margin: 30px auto;
+      max-width: 700px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .team-member {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .team-member .name {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .team-member .id {
+      font-size: 18px;
+      color: #e0e0e0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 35px;
+    }
+
+    .stat-box {
+      background: rgba(0, 212, 255, 0.1);
+      border: 2px solid #00d4ff;
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .stat-box:hover {
+      transform: scale(1.05);
+      background: rgba(0, 212, 255, 0.2);
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
+    }
+
+    .stat-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #00d4ff;
+      margin-bottom: 12px;
+    }
+
+    .stat-desc {
+      font-size: 22px;
+      color: #6dd5ed;
+      line-height: 1.4;
+    }
+
+    .four-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+      margin-top: 35px;
+    }
+
+    .info-box {
+      background: rgba(109, 213, 237, 0.1);
+      border-left: 5px solid #00d4ff;
+      padding: 25px;
+      border-radius: 8px;
+    }
+
+    .info-box h3 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .info-box p {
+      font-size: 22px;
+    }
+
+    .highlight {
+      color: #00d4ff;
+      font-weight: bold;
+    }
+
+    .key-point {
+      background: rgba(0, 212, 255, 0.15);
+      border-left: 5px solid #00d4ff;
+      padding: 25px;
+      margin: 25px 0;
+      border-radius: 8px;
+      font-size: 24px;
+    }
+
+    .icon {
+      font-size: 44px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    button {
+      background: #00d4ff;
+      color: #0f0f1e;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: #6dd5ed;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+    }
+
+    button:disabled {
+      background: #444;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .slide-counter {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      font-size: 20px;
+      color: #6dd5ed;
+      z-index: 1000;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      margin-top: 30px;
+    }
+
+    .definition-box {
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(109, 213, 237, 0.1));
+      border: 2px solid #00d4ff;
+      border-radius: 12px;
+      padding: 30px;
+      margin-top: 25px;
+    }
+
+    .definition-box .title {
+      font-size: 30px;
+      color: #00d4ff;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .numbered-list {
+      counter-reset: item;
+      list-style: none;
+    }
+
+    .numbered-list li {
+      counter-increment: item;
+      padding-left: 50px;
+    }
+
+    .numbered-list li:before {
+      content: counter(item) ".";
+      color: #00d4ff;
+      font-weight: bold;
+      font-size: 28px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="presentation">
+    <!-- Slide 1: Title -->
+    <div class="slide title-slide active">
+      <h1>Macroeconomic Performance of U.S.A.</h1>
+
+      <div class="instructor-box">
+        <p class="course-info"><strong>Course:</strong> Introduction to Economics</p>
+        <p class="course-info"><strong>Instructor:</strong> Suktara Khanom [SKM]</p>
+        <p class="course-info">Lecturer, Department of Economics, Southeast University</p>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="name">Md. Rakibul Islam Akand</div>
+          <div class="id">ID: 2024200000092</div>
+        </div>
+        <div class="team-member">
+          <div class="name">Shah Nawaz Alam</div>
+          <div class="id">ID: 2024200000582</div>
+        </div>
+        <div class="team-member">
+          <div class="name">Suriya Binte Rahman</div>
+          <div class="id">ID: 2024200000096</div>
+        </div>
+        <div class="team-member">
+          <div class="name">Abdullah Al Masum</div>
+          <div class="id">ID: 2023200000621</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Introduction -->
+    <div class="slide">
+      <h2>Introduction to the U.S.A. Economy</h2>
+
+      <ul>
+        <li>The United States has one of the <span class="highlight">largest and most influential economies</span> in
+          the world</li>
+
+        <li>It is a <span class="highlight">high-income, developed country</span> with a mixed market economy</li>
+
+        <li>The economy is driven by <span class="highlight">innovation, technology</span>, and a large consumer market
+        </li>
+
+        <li>Economic changes in the U.S. often <span class="highlight">impact the global economy</span></li>
+      </ul>
+
+      <div class="key-point" style="margin-top: 50px;">
+        <p><strong>Key Insight:</strong> The USA economy serves as a major driver and indicator of global economic
+          health</p>
+      </div>
+    </div>
+
+    <!-- Slide 3: Principal Macroeconomic Data Points -->
+    <div class="slide">
+      <h2>Principal Macroeconomic Data Points (USA)</h2>
+
+      <div class="four-grid">
+        <div class="stat-box">
+          <span class="icon">📊</span>
+          <div class="stat-title">GDP</div>
+          <div class="stat-desc">Measures total goods and services and shows economic growth</div>
+        </div>
+
+        <div class="stat-box">
+          <span class="icon">💼</span>
+          <div class="stat-title">Unemployment Rate</div>
+          <div class="stat-desc">Reflects labor market conditions and job availability</div>
+        </div>
+
+        <div class="stat-box">
+          <span class="icon">💰</span>
+          <div class="stat-title">Inflation Rate (CPI)</div>
+          <div class="stat-desc">Shows price changes and purchasing power</div>
+        </div>
+
+        <div class="stat-box">
+          <span class="icon">📈</span>
+          <div class="stat-title">Interest Rate & Trade Balance</div>
+          <div class="stat-desc">Affect investment, inflation control, and global trade</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Role of Government -->
+    <div class="slide">
+      <h2>Role of Government and Institutions (USA)</h2>
+
+      <div class="two-column">
+        <div class="info-box">
+          <span class="icon">🏛️</span>
+          <h3>Fiscal Policy</h3>
+          <p>The U.S. government manages the economy through fiscal policy</p>
+          <p style="margin-top: 15px;">Includes <span class="highlight">government spending and taxation</span></p>
+        </div>
+
+        <div class="info-box">
+          <span class="icon">🏦</span>
+          <h3>Federal Reserve</h3>
+          <p>Controls <span class="highlight">monetary policy</span> to manage inflation and employment</p>
+          <p style="margin-top: 15px;">Independent central banking system</p>
+        </div>
+      </div>
+
+      <div class="key-point" style="margin-top: 40px;">
+        <p><span class="highlight">Economic Stimulus:</span> Spending increases during downturns to stimulate economic
+          activity and support recovery</p>
+      </div>
+    </div>
+
+    <!-- Slide 5: Inflation -->
+    <div class="slide">
+      <h2>Inflation</h2>
+
+      <div class="definition-box">
+        <div class="title">What is Inflation?</div>
+        <p>Inflation is the general increase in prices of goods and services over time.</p>
+      </div>
+
+      <div class="two-column" style="margin-top: 35px;">
+        <div>
+          <h3>Key Effects:</h3>
+          <ul class="numbered-list">
+            <li>Decreases value of money over time</li>
+            <li>Affects daily life and cost of living</li>
+            <li>High inflation hurts low-income people</li>
+            <li>Low and stable inflation supports growth</li>
+          </ul>
+        </div>
+
+        <div class="info-box" style="margin-top: 0;">
+          <span class="icon">⚖️</span>
+          <h3>Balance is Key</h3>
+          <p><span class="highlight">Moderate and stable inflation</span> is necessary for healthy economic growth</p>
+          <p style="margin-top: 15px;">High inflation reduces people's purchasing power</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6: Monetary Policy -->
+    <div class="slide">
+      <h2>Monetary Policy</h2>
+
+      <div class="definition-box">
+        <div class="title">What is Monetary Policy?</div>
+        <p>Monetary policy is the action taken by the central bank to control money supply and interest rates.</p>
+      </div>
+
+      <h3 style="margin-top: 35px; color: #00d4ff;">Monetary Policy in the United States:</h3>
+
+      <div class="stats-grid">
+        <div class="info-box">
+          <span class="icon">🏦</span>
+          <p><span class="highlight">Controlled by:</span> US Federal Reserve</p>
+        </div>
+
+        <div class="info-box">
+          <span class="icon">🎯</span>
+          <p><span class="highlight">Main Goals:</span> Price stability and employment</p>
+        </div>
+
+        <div class="info-box">
+          <span class="icon">📈</span>
+          <p><span class="highlight">High Rates:</span> Reduce spending and inflation</p>
+        </div>
+
+        <div class="info-box">
+          <span class="icon">📉</span>
+          <p><span class="highlight">Low Rates:</span> Encourage borrowing and growth</p>
+        </div>
+      </div>
+
+      <div class="key-point" style="margin-top: 35px;">
+        <p><strong>Overall Idea:</strong> The Federal Reserve uses interest rates to control inflation and support
+          economic growth in the USA.</p>
+      </div>
+    </div>
+
+    <!-- Slide 7: Financial Stability -->
+    <div class="slide">
+      <h2>Financial Stability</h2>
+
+      <div class="definition-box">
+        <div class="title">What is Financial Stability?</div>
+        <p>Financial stability means a strong and well-functioning financial system without major disruptions.</p>
+      </div>
+
+      <div class="two-column" style="margin-top: 35px;">
+        <div>
+          <h3>Key Components:</h3>
+          <ul>
+            <li>Financial stability ensures <span class="highlight">strong banking system</span></li>
+            <li>Builds <span class="highlight">trust</span> in banks and financial markets</li>
+            <li>Financial crises harm economic growth</li>
+            <li><span class="highlight">Fed and government</span> regulate financial system</li>
+          </ul>
+        </div>
+
+        <div class="info-box" style="margin-top: 0;">
+          <span class="icon">🛡️</span>
+          <h3>Importance</h3>
+          <p>A stable financial system builds trust, supports investment, and protects the economy from financial
+            crises.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 8: Thank You -->
+    <div class="slide" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); text-align: center;">
+      <h1 style="font-size: 72px; color: #fff; margin-bottom: 40px;">Thank You!</h1>
+      <p style="font-size: 38px; color: #e0e0e0; margin-top: 30px;">Questions?</p>
+
+      <div style="margin-top: 60px; font-size: 24px; color: #e0e0e0;">
+        <p>Team Presentation</p>
+        <p style="margin-top: 15px;">Introduction to Economics</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-counter">
+    <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
+  </div>
+
+  <div class="controls">
+    <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    document.getElementById('totalSlides').textContent = totalSlides;
+
+    function showSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (n + totalSlides) % totalSlides;
+      slides[currentSlide].classList.add('active');
+
+      document.getElementById('currentSlide').textContent = currentSlide + 1;
+
+      document.getElementById('prevBtn').disabled = currentSlide === 0;
+      document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+    }
+
+    function changeSlide(direction) {
+      showSlide(currentSlide + direction);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+        changeSlide(-1);
+      }
+    });
+
+    // Initialize
+    showSlide(0);
+  </script>
+</body>
+
+</html>

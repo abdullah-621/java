@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>USA Fiscal Policy & Trade Presentation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1a1a2e;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .presentation {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+      padding: 60px 80px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 64px;
+      margin-bottom: 30px;
+      color: #4ecdc4;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      font-size: 48px;
+      margin-bottom: 40px;
+      color: #4ecdc4;
+      border-bottom: 4px solid #4ecdc4;
+      padding-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 36px;
+      margin-bottom: 25px;
+      color: #95e1d3;
+    }
+
+    p {
+      font-size: 28px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 32px;
+      color: #95e1d3;
+      margin-bottom: 40px;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 30px;
+    }
+
+    li {
+      font-size: 28px;
+      margin: 25px 0;
+      padding-left: 50px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: #4ecdc4;
+      font-weight: bold;
+      font-size: 32px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .stat-box {
+      background: rgba(78, 205, 196, 0.1);
+      border: 2px solid #4ecdc4;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .stat-box:hover {
+      transform: scale(1.05);
+      background: rgba(78, 205, 196, 0.2);
+    }
+
+    .stat-number {
+      font-size: 56px;
+      font-weight: bold;
+      color: #4ecdc4;
+      margin-bottom: 10px;
+    }
+
+    .stat-label {
+      font-size: 24px;
+      color: #95e1d3;
+    }
+
+    .trade-flow {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 50px;
+      gap: 20px;
+    }
+
+    .country-box {
+      background: rgba(149, 225, 211, 0.1);
+      border: 2px solid #95e1d3;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      min-width: 180px;
+    }
+
+    .country-name {
+      font-size: 26px;
+      font-weight: bold;
+      color: #4ecdc4;
+      margin-bottom: 10px;
+    }
+
+    .country-value {
+      font-size: 22px;
+      color: #95e1d3;
+    }
+
+    .center-usa {
+      background: linear-gradient(135deg, #4ecdc4, #95e1d3);
+      color: #1a1a2e;
+      font-size: 36px;
+      font-weight: bold;
+      padding: 40px;
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px rgba(78, 205, 196, 0.5);
+    }
+
+    .highlight {
+      color: #4ecdc4;
+      font-weight: bold;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    button {
+      background: #4ecdc4;
+      color: #1a1a2e;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: #95e1d3;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+    }
+
+    button:disabled {
+      background: #555;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    .slide-counter {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      font-size: 20px;
+      color: #95e1d3;
+      z-index: 1000;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .key-point {
+      background: rgba(78, 205, 196, 0.1);
+      border-left: 5px solid #4ecdc4;
+      padding: 25px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="presentation">
+    <!-- Slide 1: Title -->
+    <div class="slide active">
+      <h1>USA Fiscal Policy & Trade</h1>
+      <p class="subtitle">A Global Economic Perspective</p>
+      <div style="margin-top: 60px;">
+        <p style="font-size: 32px; color: #95e1d3;">Presented by: Abdullah Al Masum</p>
+        <p style="font-size: 24px; color: #95e1d3; margin-top: 20px;">Final Segment | Team Presentation</p>
+      </div>
+    </div>
+    <!-- Slide 2: Fiscal Policy -->
+    <div class="slide">
+      <h2>What is Fiscal Policy?</h2>
+      <p class="subtitle">Government's Economic Toolkit</p>
+
+      <div class="two-column">
+        <div>
+          <div class="icon">💰</div>
+          <h3>Government Spending</h3>
+          <p>Direct investment in infrastructure, education, healthcare, and public services</p>
+        </div>
+        <div>
+          <div class="icon">📊</div>
+          <h3>Taxation</h3>
+          <p>Adjusting tax rates to influence consumption, investment, and economic activity</p>
+        </div>
+      </div>
+
+      <div class="key-point">
+        <p><span class="highlight">Purpose:</span> Promote economic growth, reduce poverty, and stabilize the economy
+          during crises</p>
+      </div>
+    </div>
+
+    <!-- Slide 3: USA Trade Dominance -->
+    <div class="slide">
+      <h2>USA: World's 2nd Largest Trading Nation</h2>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-number">$7.0T</div>
+          <div class="stat-label">Total Trade (2022)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Trading Partners</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">$2.1T</div>
+          <div class="stat-label">Goods Exports</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">$3.2T</div>
+          <div class="stat-label">Goods Imports</div>
+        </div>
+      </div>
+
+      <div class="key-point" style="margin-top: 40px;">
+        <p><span class="highlight">#1 Globally:</span> Largest services exporter ($926B) and importer ($680B)</p>
+        <p><span class="highlight">#1 Globally:</span> Largest goods importer</p>
+      </div>
+    </div>
+
+    <!-- Slide 4: Top Trading Partners -->
+    <div class="slide">
+      <h2>Top Trading Partners</h2>
+
+      <div class="trade-flow">
+        <div class="country-box">
+          <div class="country-name">🇨🇦 Canada</div>
+          <div class="country-value">$356.5B</div>
+          <div style="font-size: 18px; margin-top: 8px; color: #fff;">Exports</div>
+        </div>
+
+        <div class="country-box">
+          <div class="country-name">🇲🇽 Mexico</div>
+          <div class="country-value">$324.3B</div>
+          <div style="font-size: 18px; margin-top: 8px; color: #fff;">Exports</div>
+        </div>
+
+        <div class="center-usa">USA</div>
+
+        <div class="country-box">
+          <div class="country-name">🇨🇳 China</div>
+          <div class="country-value">$536.3B</div>
+          <div style="font-size: 18px; margin-top: 8px; color: #fff;">Imports</div>
+        </div>
+
+        <div class="country-box">
+          <div class="country-name">🇯🇵 Japan</div>
+          <div class="country-value">$148.1B</div>
+          <div style="font-size: 18px; margin-top: 8px; color: #fff;">Imports</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 50px; text-align: center; font-size: 24px; color: #95e1d3;">Strong trade relationships
+        across North America, Asia, and Europe</p>
+    </div>
+
+    <!-- Slide 5: Economic Recovery -->
+    <div class="slide">
+      <h2>Leading Global Economic Recovery</h2>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="icon">📈</div>
+          <div class="stat-number">6.1%</div>
+          <div class="stat-label">Above Pre-Pandemic GDP</div>
+        </div>
+        <div class="stat-box">
+          <div class="icon">💼</div>
+          <div class="stat-label" style="font-size: 28px; line-height: 1.4;">Resilient Labor Markets</div>
+        </div>
+        <div class="stat-box">
+          <div class="icon">📉</div>
+          <div class="stat-label" style="font-size: 28px; line-height: 1.4;">Slowing Inflation</div>
+        </div>
+        <div class="stat-box">
+          <div class="icon">🌍</div>
+          <div class="stat-label" style="font-size: 28px; line-height: 1.4;">Supporting Global Growth</div>
+        </div>
+      </div>
+
+      <div class="key-point" style="margin-top: 40px;">
+        <p><span class="highlight">Key Achievement:</span> Only major advanced economy on track to return to
+          pre-pandemic growth trend</p>
+        <p style="margin-top: 15px;"><span class="highlight">Drivers:</span> Infrastructure Law, CHIPS Act, Inflation
+          Reduction Act</p>
+      </div>
+    </div>
+
+    <!-- Slide 6: Key Takeaways -->
+    <div class="slide">
+      <h2>Key Takeaways</h2>
+
+      <ul>
+        <li><span class="highlight">Fiscal Policy</span> remains a powerful tool for economic management through
+          government spending and taxation</li>
+
+        <li><span class="highlight">USA Trade Leadership</span> with $7+ trillion in trade, maintaining top positions in
+          goods and services globally</li>
+
+        <li><span class="highlight">Economic Resilience</span> supporting not just America but global economic stability
+        </li>
+      </ul>
+
+      <div style="margin-top: 80px; text-align: center;">
+        <h1 style="font-size: 56px;">Thank You!</h1>
+        <p style="font-size: 32px; color: #95e1d3; margin-top: 30px;">Questions?</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-counter">
+    <span id="currentSlide">1</span> / <span id="totalSlides">6</span>
+  </div>
+
+  <div class="controls">
+    <button id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+    <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    document.getElementById('totalSlides').textContent = totalSlides;
+
+    function showSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (n + totalSlides) % totalSlides;
+      slides[currentSlide].classList.add('active');
+
+      document.getElementById('currentSlide').textContent = currentSlide + 1;
+
+      document.getElementById('prevBtn').disabled = currentSlide === 0;
+      document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+    }
+
+    function changeSlide(direction) {
+      showSlide(currentSlide + direction);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && currentSlide < totalSlides - 1) {
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+        changeSlide(-1);
+      }
+    });
+
+    // Initialize
+    showSlide(0);
+  </script>
+</body>
+
+</html>

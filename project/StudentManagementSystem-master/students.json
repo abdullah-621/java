@@ -1,0 +1,72 @@
+[
+  {
+    "id": "202220000074",
+    "name": "Kabir Ahmed shahil",
+    "email": "shahil@gmail.com",
+    "phone": "000000000000",
+    "department": "CSE - Computer Science and Engineering",
+    "batch": "62",
+    "semester": "8th",
+    "cgpa": "4.0"
+  },
+  {
+    "id": "2024000000100",
+    "name": "Mahedi Hasan siam",
+    "email": "siam@gmail.com",
+    "phone": "999999999999",
+    "department": "CSE - Computer Science and Engineering",
+    "batch": "66",
+    "semester": "5th",
+    "cgpa": "4.0"
+  },
+  {
+    "id": "2024000000154",
+    "name": "Rifat Hasan",
+    "email": "rifat@gmail.com",
+    "phone": "888888888888",
+    "department": "CSE - Computer Science and Engineering",
+    "batch": "66",
+    "semester": "5th",
+    "cgpa": "4.0"
+  },
+  {
+    "id": "900",
+    "name": "masum",
+    "email": "masum@gmail",
+    "phone": "000000000000",
+    "department": "CSE - Computer Science and Engineering",
+    "batch": "65",
+    "semester": "5",
+    "cgpa": "4"
+  },
+  {
+    "id": "9000",
+    "name": "masum",
+    "email": "masum@gmail",
+    "phone": "0000000000",
+    "department": "LLB - Law",
+    "batch": "87",
+    "semester": "9",
+    "cgpa": "3"
+  },
+  {
+    "id": "10000",
+    "name": "noman",
+    "email": "noman@gmail.com",
+    "phone": "00000000000",
+    "department": "EEE - Electrical and Electronic Engineering",
+    "batch": "87",
+    "semester": "54",
+    "cgpa": "3"
+  },
+  {
+    "id": "876554",
+    "name": "noman",
+    "email": "noman76@gmail.com",
+    "phone": "00000000000",
+    "department": "EEE - Electrical and Electronic Engineering",
+    "batch": "87",
+    "semester": "54",
+    "cgpa": "3"
+  }
+]
