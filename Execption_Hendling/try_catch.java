@@ -1,24 +1,32 @@
-class Test {
-  static void divide() throws ArithmeticException
+class myException extends Exception {
+  myException(String massage)
   {
-    int result = 10 / 0;
-    System.out.println(result);
+    super(massage);
+  }
+}
+
+class test {
+  static void checkAge(int age) throws myException {
+
+    if (age < 18) {
+      throw new myException("Age must be greater then 18");
+    } else {
+      System.out.println("You are eligible");
+    }
   }
 }
 
 public class try_catch {
   public static void main(String[] args) {
-    
-    if (15 < 18)
-    {
-      throw new ArithmeticException("Age must be 18 or above");
-    }
-    
     try{
-      Test.divide();
+      test.checkAge(10);
     }
-    catch(ArithmeticException e){
+    catch(myException e)
+    {
       System.out.println(e.getMessage());
+    }
+    finally {
+      System.out.println("Its okkkkkkkk.......");
     }
   }
 }
